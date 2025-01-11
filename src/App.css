@@ -42,45 +42,65 @@
   to {top: 200px;}
 } */
 
-
-/* src/App.css */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #c8c492;
-}
-
+/* Set full height for the entire page */
 .app {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  height: 100vh;
-  padding: 20px;
-  background-color: #ffffff;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+  background-color: #f9f9f9; /* Optional background color */
 }
 
-.container {
-  width: 45%;
-  padding: 20px;
-  border: 1px solid #ddd;
+/* First row for the button */
+.first-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%; /* Adjust height as needed */
+}
+
+/* Button styling */
+.switch-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #264653;
+  color: white;
   border-radius: 5px;
-  background-color: #fafafa;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.left-container {
-  background-color: #e3f2fd;
+.switch-button:hover {
+  background-color: #2a9d8f;
 }
 
-.right-container {
-  background-color: #ffe0b2;
+/* Second row for the containers */
+.second-row {
+  display: flex;
+  flex: 1; /* Occupy the remaining height */
+  width: 100%; /* Full width */
+  justify-content: space-between;
 }
 
-h2 {
-  margin-top: 0;
+/* Containers styling */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin: 5px; /* Optional spacing between containers */
+  color: black;
+  font-size: 18px;
+  border: 2px solid #ccc; /* Optional border */
+  border-radius: 10px;
 }
 
-p {
-  color: #555;
+.container h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.container p {
+  text-align: center;
 }

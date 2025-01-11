@@ -25,19 +25,59 @@
 // export default App;
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [isSwitched, setIsSwitched] = useState(false);
+
+  // Function to toggle the container positions
+  const switchContainers = () => {
+    setIsSwitched(!isSwitched);
+  };
+
   return (
     <div className="app">
-      <div className="container left-container">
-        <h2>Left Container</h2>
-        <p>This is the content of the left container.</p>
+      {/* First Row with Switch Button */}
+      <div className="row first-row">
+        <button className="switch-button" onClick={switchContainers}>
+          Switch
+        </button>
       </div>
-      <div className="container right-container">
-        <h2>Right Container</h2>
-        <p>This is the content of the right container.</p>
+
+      {/* Second Row with Two Containers */}
+      <div className="row second-row">
+        {isSwitched ? (
+          <>
+            <div className="container" style={{ backgroundColor: '#f4a221', flex: 1 }}>
+              <h2>Container 3</h2>
+              <p>This is the content of Container 3.</p>
+            </div>
+            <div className="container" style={{ backgroundColor: '#f4a261', flex: 1 }}>
+              <h2>Container 2</h2>
+              <p>This is the content of Container 2.</p>
+            </div>
+            <div className="container" style={{ backgroundColor: '#2a9d8f', flex: 1 }}>
+              <h2>Container 1</h2>
+              <p>This is the content of Container 1.</p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="container" style={{ backgroundColor: '#f4a221', flex: 1 }}>
+              <h2>Container 3</h2>
+              <p>This is the content of Container 3.</p>
+            </div>
+            <div className="container" style={{ backgroundColor: '#2a9d8f', flex: 1 }}>
+              <h2>Container 1</h2>
+              <p>This is the content of Container 1.</p>
+            </div>
+            <div className="container" style={{ backgroundColor: '#f4a261', flex: 1 }}>
+              <h2>Container 2</h2>
+              <p>This is the content of Container 2.</p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
