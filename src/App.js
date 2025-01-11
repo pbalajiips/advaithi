@@ -29,55 +29,54 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [isSwitched, setIsSwitched] = useState(false);
+  const [order, setOrder] = useState(["Container 1", "Container 2", "Container 3","Container 4","Container 5"]);
 
-  // Function to toggle the container positions
-  const switchContainers = () => {
-    setIsSwitched(!isSwitched);
+  // Fisher-Yates Shuffle Function
+  const fisherYatesShuffle = (array) => {
+    const newArray = [...array]; // Create a copy to avoid mutating the original array
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); // Random index between 0 and i
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; // Swap elements
+    }
+    return newArray;
+  };
+
+  // Function to shuffle the container positions
+  const shuffleContainers = () => {
+    setOrder(fisherYatesShuffle(order));
   };
 
   return (
     <div className="app">
-      {/* First Row with Switch Button */}
+      {/* First Row with Shuffle Button */}
       <div className="row first-row">
-        <button className="switch-button" onClick={switchContainers}>
-          Switch
+        <button className="switch-button" onClick={shuffleContainers}>
+          Shuffle
         </button>
       </div>
 
-      {/* Second Row with Two Containers */}
+      {/* Second Row with Containers */}
       <div className="row second-row">
-        {isSwitched ? (
-          <>
-            <div className="container" style={{ backgroundColor: '#f4a221', flex: 1 }}>
-              <h2>Container 3</h2>
-              <p>This is the content of Container 3.</p>
+        {order.map((container, index) => {
+          const backgroundColors = {
+            "Container 1": '#2a9d8f',
+            "Container 2": '#f4a261',
+            "Container 3": '#f4a221',
+            "Container 4": '#f1d121',
+            "Container 5": '#f2c521',
+          };
+
+          return (
+            <div
+              key={index}
+              className="container"
+              style={{ backgroundColor: backgroundColors[container], flex: 1 }}
+            >
+              <h2>{container}</h2>
+              <p>This is the content of {container}.</p>
             </div>
-            <div className="container" style={{ backgroundColor: '#f4a261', flex: 1 }}>
-              <h2>Container 2</h2>
-              <p>This is the content of Container 2.</p>
-            </div>
-            <div className="container" style={{ backgroundColor: '#2a9d8f', flex: 1 }}>
-              <h2>Container 1</h2>
-              <p>This is the content of Container 1.</p>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="container" style={{ backgroundColor: '#f4a221', flex: 1 }}>
-              <h2>Container 3</h2>
-              <p>This is the content of Container 3.</p>
-            </div>
-            <div className="container" style={{ backgroundColor: '#2a9d8f', flex: 1 }}>
-              <h2>Container 1</h2>
-              <p>This is the content of Container 1.</p>
-            </div>
-            <div className="container" style={{ backgroundColor: '#f4a261', flex: 1 }}>
-              <h2>Container 2</h2>
-              <p>This is the content of Container 2.</p>
-            </div>
-          </>
-        )}
+          );
+        })}
       </div>
     </div>
   );
